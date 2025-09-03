@@ -1,17 +1,21 @@
 import { useState, createContext } from "react"
-import { MoreVertical, ChevronLast, ChevronFirst } from "lucide-react"
+import { ChevronLast, ChevronFirst } from "lucide-react"
+import f1Logo from "../../public/F1.svg"
 
-const SidebarContext = createContext()
+//slate-800 for ui elements
+//slate-950 for backgrounds
+
+export const SidebarContext = createContext()
 
 export default function Sidebar({ children }) {
     const [expanded, setExpanded] = useState(true)
 
     return (
-        <aside className="w-64 h-screen">
-            <nav className="h-full flex flex-col bg-white border-r shadow-sm">
+        <aside className={`h-screen ${expanded ? "w-64" : "flex"} transition-all shadow-md`}>
+            <nav className="h-full flex flex-col bg-slate-800 border-r shadow-sm">
                 <div className="p-4 pb-2 flex justify-between items-center">
                     <img
-                        src=""
+                        src={f1Logo}
                         className={`overflow-hidden transition-all ${
                         expanded ? "w-32" : "w-0"
                         }`}
@@ -19,7 +23,7 @@ export default function Sidebar({ children }) {
                     />
                     <button
                         onClick={() => setExpanded(curr => !curr)}
-                        className="p-1.5 rounded-lg bg-gray-50 hover:bg-gray-100"
+                        className="p-1.5 rounded-lg bg-gray-300 hover:bg-gray-100"
                     >
                         {expanded ? <ChevronFirst /> : <ChevronLast />}
                     </button>
@@ -39,9 +43,9 @@ export default function Sidebar({ children }) {
                         overflow-hidden transition-all ${expanded ? "w-52 ml-3" : "w-0"}
                     `}
                     >
-                        <div className="leading-4">
-                            <h4 className="font-semibold">Name</h4>
-                            <span className="text-xs text-gray-600">Email</span>
+                        <div className="leading-4 text-stone-50">
+                            <h4 className="font-semibold">John Doe</h4>
+                            <span className="text-xs">JohnDoe@gmail.com</span>
                         </div>
                     </div>
                 </div>
